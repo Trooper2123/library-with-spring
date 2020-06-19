@@ -1,4 +1,4 @@
-package com.mylibrary.livraria.product;
+package com.mylibrary.livraria.category;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,21 +12,21 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping(value ="/products")
-public class ProductController {
+@RequestMapping(value ="/categories")
+public class CategoryController {
 
     @Autowired
-    private ProductService service;
+    private CategoryService service;
 
     @GetMapping
-    public ResponseEntity<List<Product>> findAll(){
-        List<Product> list = service.findAll();
+    public ResponseEntity<List<Category>> findAll(){
+        List<Category> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/`{id}")
-    public ResponseEntity<Product> findByID(@PathVariable Long id){
-        Product object = service.findById(id);
+    public ResponseEntity<Category> findByID(@PathVariable Long id){
+        Category object = service.findById(id);
         return ResponseEntity.ok().body(object);
     }
 

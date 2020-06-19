@@ -1,4 +1,4 @@
-package com.mylibrary.livraria.product;
+package com.mylibrary.livraria.category;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +8,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ProductService {
+public class CategoryService {
     @Autowired
-    private ProductRepository repository;
+    private CategoryRepository repository;
 
-    public List<Product> findAll(){
+    public List<Category> findAll(){
         return repository.findAll();
     }
 
-    public Product findById(Long id){
-        Optional<Product> object = repository.findById(id);
+    public Category findById(Long id){
+        Optional<Category> object = repository.findById(id);
         return object.get();
     }
 
