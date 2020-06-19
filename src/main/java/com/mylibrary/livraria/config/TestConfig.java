@@ -4,7 +4,9 @@ import com.mylibrary.livraria.category.Category;
 import com.mylibrary.livraria.category.CategoryRepository;
 import com.mylibrary.livraria.order.Order;
 import com.mylibrary.livraria.order.OrderRepository;
+import com.mylibrary.livraria.orderItem.OrderItemRepository;
 import com.mylibrary.livraria.orderStatus.OrderStatus;
+import com.mylibrary.livraria.orderItem.OrderItem;
 import com.mylibrary.livraria.product.Product;
 import com.mylibrary.livraria.product.ProductRepository;
 import com.mylibrary.livraria.user.User;
@@ -33,6 +35,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private OrderItemRepository orderItemRepository;
+
     @Override
     public void run(String... args) throws Exception {
         User u1  = new User(null, "Maria", "teste@teste.com"
@@ -47,6 +52,9 @@ public class TestConfig implements CommandLineRunner {
         Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"),OrderStatus.CANCELED, u1);
 
         orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+
+
+
 
         Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
         Product p2 = new Product(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
@@ -70,10 +78,12 @@ public class TestConfig implements CommandLineRunner {
 
         productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
 
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
+        OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
-
-
-
+        orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 
     }
 
