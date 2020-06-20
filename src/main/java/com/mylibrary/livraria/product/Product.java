@@ -3,7 +3,7 @@ package com.mylibrary.livraria.product;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mylibrary.livraria.category.Category;
 import com.mylibrary.livraria.order.Order;
-import com.mylibrary.livraria.orderItem.OrderItem;
+import com.mylibrary.livraria.orderitem.OrderItem;
 
 import javax.persistence.*;
 import java.io.Serializable;

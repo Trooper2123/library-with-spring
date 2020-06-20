@@ -1,5 +1,6 @@
 package com.mylibrary.livraria.payment;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mylibrary.livraria.order.Order;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class Payment implements Serializable {
 
     @OneToOne
     @MapsId
+    @JsonIgnore
     private Order order;
 
     public Payment(){

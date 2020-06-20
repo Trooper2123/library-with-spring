@@ -1,4 +1,4 @@
-package com.mylibrary.livraria.orderItem;
+package com.mylibrary.livraria.orderitem;
 
 import com.mylibrary.livraria.order.Order;
 import com.mylibrary.livraria.product.Product;
@@ -7,7 +7,6 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Embeddable
 public class OrderItemPK implements Serializable {

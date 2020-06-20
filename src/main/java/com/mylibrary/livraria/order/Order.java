@@ -2,7 +2,7 @@ package com.mylibrary.livraria.order;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.mylibrary.livraria.orderStatus.OrderStatus;
-import com.mylibrary.livraria.orderItem.OrderItem;
+import com.mylibrary.livraria.orderitem.OrderItem;
 import com.mylibrary.livraria.payment.Payment;
 import com.mylibrary.livraria.user.User;
 
@@ -71,8 +71,9 @@ public class Order implements Serializable {
     }
 
     public void setOrderStatus(OrderStatus orderStatus) {
-        if (orderStatus != null){
-        this.orderStatus = orderStatus.getCode();}
+        if (orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
     }
 
     public User getClient() {
@@ -93,6 +94,14 @@ public class Order implements Serializable {
 
     public Set<OrderItem> getItems() {
         return items;
+    }
+
+    public Double getTotal() {
+        double sum = 0.0;
+        for (OrderItem x : items) {
+            sum += x.getSubTotal();
+        }
+        return sum;
     }
 
     @Override

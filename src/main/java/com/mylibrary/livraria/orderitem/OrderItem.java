@@ -1,4 +1,4 @@
-package com.mylibrary.livraria.orderItem;
+package com.mylibrary.livraria.orderitem;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mylibrary.livraria.order.Order;
@@ -67,6 +67,7 @@ public class OrderItem implements Serializable {
     public Double getSubTotal() {
         return price * quantity;
     }
+
 
     @Override
     public int hashCode() {
