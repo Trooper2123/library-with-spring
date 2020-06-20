@@ -1,6 +1,9 @@
 package com.mylibrary.livraria.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mylibrary.livraria.category.Category;
+import com.mylibrary.livraria.order.Order;
+import com.mylibrary.livraria.orderItem.OrderItem;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,6 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "tb_product")
 public class Product implements Serializable {
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +25,19 @@ public class Product implements Serializable {
     private String imgUrl;
 
     @ManyToMany
-    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"),
-    inverseJoinColumns = @JoinColumn(name = "caregory_id"))
+    @JoinTable(name = "tb_product_category"
+            , joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
-    public Product(){
+    @OneToMany(mappedBy = "id.product")
+    private Set<OrderItem> items = new HashSet<>();
+
+    public Product() {
     }
 
     public Product(Long id, String name, String description, Double price, String imgUrl) {
+        super();
         this.id = id;
         this.name = name;
         this.description = description;
@@ -80,16 +89,34 @@ public class Product implements Serializable {
         return categories;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Product)) return false;
-        Product product = (Product) o;
-        return getId().equals(product.getId());
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : items) {
+            set.add(x.getOrder());
+        }
+        return set;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Product other = (Product) obj;
+        if (id == null) {
+            return other.id == null;
+        } else return id.equals(other.id);
+    }
 }
+
+
+

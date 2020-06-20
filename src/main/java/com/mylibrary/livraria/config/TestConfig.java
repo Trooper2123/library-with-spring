@@ -40,20 +40,6 @@ public class TestConfig implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User u1  = new User(null, "Maria", "teste@teste.com"
-                ,"12345678901","123456789","123");
-        User u2 = new User(null, "Eduardo", "teste@teste.com"
-                ,"12345678901","123456789","123");
-
-        userRepository.saveAll(Arrays.asList(u1,u2));
-
-        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
-        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"),OrderStatus.DELIVERED, u2);
-        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"),OrderStatus.CANCELED, u1);
-
-        orderRepository.saveAll(Arrays.asList(o1,o2,o3));
-
-
 
 
         Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
@@ -77,6 +63,22 @@ public class TestConfig implements CommandLineRunner {
         p5.getCategories().add(cat2);
 
         productRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5));
+
+
+        User u1  = new User(null, "Maria", "teste@teste.com"
+                ,"12345678901","123456789","123");
+        User u2 = new User(null, "Eduardo", "teste@teste.com"
+                ,"12345678901","123456789","123");
+
+        userRepository.saveAll(Arrays.asList(u1,u2));
+
+        Order o1 = new Order(null, Instant.parse("2019-06-20T19:53:07Z"), OrderStatus.PAID, u1);
+        Order o2 = new Order(null, Instant.parse("2019-07-21T03:42:10Z"),OrderStatus.DELIVERED, u2);
+        Order o3 = new Order(null, Instant.parse("2019-07-22T15:21:22Z"),OrderStatus.CANCELED, u1);
+
+        orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+
+
 
         OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
         OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
