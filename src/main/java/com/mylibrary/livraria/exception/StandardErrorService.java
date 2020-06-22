@@ -19,20 +19,20 @@ public class StandardErrorService implements Serializable {
 
     }
 
-    public StandardErrorService(Instant timedtamp, Integer status, String error, String message, String path) {
-        this.timestamp = timedtamp;
+    public StandardErrorService(Instant timestamp, Integer status, String error, String message, String path) {
+        this.timestamp = timestamp;
         this.status = status;
         this.error = error;
         this.message = message;
         this.path = path;
     }
 
-    public Instant getTimedtamp() {
+    public Instant getTimeStamp() {
         return timestamp;
     }
 
-    public void setTimedtamp(Instant timedtamp) {
-        this.timestamp = timedtamp;
+    public void setTimeStamp(Instant timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Integer getStatus() {
